@@ -2084,51 +2084,61 @@ function initAppleScrollEffects() {
   const container = document.querySelector(".hero.byk-hero");
   const els = document.querySelectorAll(".astro-float");
   if (!els.length || !container) return;
-  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-  // On mobile screens, lock the astronauts into their signature BYK Concert positions
-  // and use CSS zero-g bobbing keyframes rather than random script wandering.
-  if (window.innerWidth <= 980) return;
-
+  const isMobile = window.matchMedia("(max-width: 980px)").matches;
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const rand = (min, max) => min + Math.random() * (max - min);
 
   els.forEach((el, index) => {
-    // Initial staggered positioning within hero boundaries
-    const maxX = Math.max(0, container.clientWidth - el.offsetWidth);
-    const maxY = Math.max(0, container.clientHeight - el.offsetHeight);
+    const getBounds = () => {
+      const width = isMobile ? Math.min(container.clientWidth, window.innerWidth) : container.clientWidth;
+      const height = isMobile
+        ? Math.min(container.clientHeight || window.innerHeight, window.innerHeight)
+        : container.clientHeight;
+      const pad = isMobile ? 16 : 0;
+      const minY = isMobile ? Math.min(76, Math.max(10, height - el.offsetHeight - pad)) : 0;
+      return {
+        minX: pad,
+        maxX: Math.max(pad, width - el.offsetWidth - pad),
+        minY,
+        maxY: Math.max(minY, height - el.offsetHeight - pad),
+      };
+    };
+    const point = () => {
+      const bounds = getBounds();
+      return {
+        x: rand(bounds.minX, bounds.maxX),
+        y: rand(bounds.minY, bounds.maxY),
+      };
+    };
 
-    let x0 = rand(0, maxX);
-    let y0 = rand(0, maxY * 0.7);
-    if (index === 0) {
-      x0 = rand(maxX * 0.45, maxX * 0.85);
-      y0 = rand(maxY * 0.05, maxY * 0.35);
-    } else if (index === 1) {
-      x0 = rand(maxX * 0.05, maxX * 0.35);
-      y0 = rand(maxY * 0.15, maxY * 0.55);
-    } else {
-      x0 = rand(maxX * 0.55, maxX * 0.9);
-      y0 = rand(maxY * 0.35, maxY * 0.75);
+    let start = point();
+    if (!isMobile) {
+      const maxX = Math.max(0, container.clientWidth - el.offsetWidth);
+      const maxY = Math.max(0, container.clientHeight - el.offsetHeight);
+      if (index === 0) start = { x: rand(maxX * 0.45, maxX * 0.85), y: rand(maxY * 0.05, maxY * 0.35) };
+      else if (index === 1) start = { x: rand(maxX * 0.05, maxX * 0.35), y: rand(maxY * 0.15, maxY * 0.55) };
+      else start = { x: rand(maxX * 0.55, maxX * 0.9), y: rand(maxY * 0.35, maxY * 0.75) };
     }
-
-    el.style.transform = `translate(${x0}px, ${y0}px)`;
+    el.style.left = "0px";
+    el.style.top = "0px";
+    el.style.transform = `translate(${start.x}px, ${start.y}px)`;
+    if (reduceMotion) return;
 
     const drift = () => {
-      const curMaxX = Math.max(0, container.clientWidth - el.offsetWidth);
-      const curMaxY = Math.max(0, container.clientHeight - el.offsetHeight);
-      const x = rand(0, curMaxX);
-      const y = rand(0, curMaxY * 0.85);
-      const r = rand(-18, 18);
-      const duration = rand(7000, 13000);
+      const target = point();
+      const r = rand(isMobile ? -9 : -18, isMobile ? 9 : 18);
+      const duration = isMobile ? rand(6500, 10500) : rand(7000, 13000);
 
       const anim = el.animate(
         [
           { transform: getComputedStyle(el).transform },
-          { transform: `translate(${x}px, ${y}px) rotate(${r}deg)` },
+          { transform: `translate(${target.x}px, ${target.y}px) rotate(${r}deg)` },
         ],
         { duration: duration, easing: "ease-in-out", fill: "forwards" }
       );
       anim.onfinish = drift;
     };
 
-    setTimeout(drift, rand(400, 2500));
+    setTimeout(drift, rand(isMobile ? 300 : 400, isMobile ? 1400 : 2500));
   });
 })();
