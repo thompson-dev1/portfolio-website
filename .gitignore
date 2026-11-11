@@ -6,10 +6,7 @@ node_modules/
 dist/
 build/
 
-# Local verification captures
-/*_check*.png
-/*_test*.png
-/*_check.png
+# Local responsive-review captures
 /desktop_check.png
 /footer_desktop_check.png
 /mobile_check.png
