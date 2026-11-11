@@ -1,0 +1,22 @@
+<svg width="1000" height="680" viewBox="0 0 1000 680" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1000" y2="680"><stop stop-color="#17110E"/><stop offset="0.55" stop-color="#35281D"/><stop offset="1" stop-color="#111612"/></linearGradient>
+    <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#F7D37A"/><stop offset="1" stop-color="#B88733"/></linearGradient>
+  </defs>
+  <rect width="1000" height="680" rx="44" fill="url(#bg)"/>
+  <circle cx="820" cy="580" r="230" fill="#F7D37A" fill-opacity="0.1"/>
+  <rect x="64" y="60" width="872" height="560" rx="36" fill="#17120E" fill-opacity="0.78" stroke="#F3EEDF" stroke-opacity="0.12"/>
+  <text x="104" y="132" fill="#F3EEDF" font-family="Georgia, serif" font-size="52" font-weight="700">SME Analytics</text>
+  <text x="104" y="180" fill="#B7AD9B" font-family="Space Grotesk, Arial" font-size="22" font-weight="600">Social media data into actionable insights</text>
+  <rect x="104" y="248" width="216" height="132" rx="28" fill="#F3EEDF" fill-opacity="0.08" stroke="#F3EEDF" stroke-opacity="0.13"/>
+  <text x="134" y="302" fill="#B7AD9B" font-family="Space Grotesk, Arial" font-size="18" font-weight="700">Engagement lift</text>
+  <text x="134" y="356" fill="url(#gold)" font-family="Space Grotesk, Arial" font-size="54" font-weight="800">6.2%</text>
+  <rect x="374" y="248" width="216" height="132" rx="28" fill="#F3EEDF" fill-opacity="0.08" stroke="#F3EEDF" stroke-opacity="0.13"/>
+  <text x="404" y="302" fill="#B7AD9B" font-family="Space Grotesk, Arial" font-size="18" font-weight="700">Data points</text>
+  <text x="404" y="356" fill="#F3EEDF" font-family="Space Grotesk, Arial" font-size="54" font-weight="800">248K</text>
+  <rect x="644" y="248" width="216" height="132" rx="28" fill="#F3EEDF" fill-opacity="0.08" stroke="#F3EEDF" stroke-opacity="0.13"/>
+  <text x="674" y="302" fill="#B7AD9B" font-family="Space Grotesk, Arial" font-size="18" font-weight="700">Sentiment</text>
+  <text x="674" y="356" fill="#D7FF55" font-family="Space Grotesk, Arial" font-size="54" font-weight="800">87%</text>
+  <path d="M122 520C184 472 246 488 306 434C364 382 430 420 496 382C574 336 638 358 704 318C766 280 828 292 884 248" stroke="url(#gold)" stroke-width="14" stroke-linecap="round"/>
+  <path d="M122 560H884" stroke="#F3EEDF" stroke-opacity="0.12" stroke-width="2"/>
+</svg>

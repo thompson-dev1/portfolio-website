@@ -1,0 +1,19 @@
+.originkit/
+
+# Local system and build files
+.DS_Store
+node_modules/
+dist/
+build/
+
+# Local verification captures
+/*_check*.png
+/*_test*.png
+/*_check.png
+/desktop_check.png
+/footer_desktop_check.png
+/mobile_check.png
+/work_scroll_check.png
+
+# Unused generated component (requires an unconfigured Tailwind app)
+/components/originkit/

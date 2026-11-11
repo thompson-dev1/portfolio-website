@@ -1,0 +1,886 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Enoch Thompson is a full-stack developer building web and mobile apps, digital systems, and practical tools for business and data operations."
+    />
+    <meta property="og:title" content="Enoch Thompson | Full-Stack Developer" />
+    <meta property="og:description" content="Web and mobile apps, digital systems, and practical tools for business and data operations." />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="assets/screenshots/voima-live.jpg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Enoch Thompson | Full-Stack Developer" />
+    <meta name="twitter:description" content="Web and mobile apps, digital systems, and practical tools for business and data operations." />
+    <meta name="twitter:image" content="assets/screenshots/voima-live.jpg" />
+    <meta name="theme-color" content="#080b09" />
+    <script>
+      (function () {
+        var mode = "auto";
+        try { mode = localStorage.getItem("portfolio-theme-mode") || "auto"; } catch (error) {}
+        var theme = mode === "light" || mode === "dark"
+          ? mode
+          : (new Date().getHours() >= 7 && new Date().getHours() < 19 ? "light" : "dark");
+        document.documentElement.dataset.theme = theme;
+        document.documentElement.dataset.themeMode = mode;
+      })();
+    </script>
+    <title>Thompson-dev1 | Full-Stack Developer</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png" />
+    <link rel="icon" type="image/png" sizes="64x64" href="assets/favicon-64.png" />
+    <link rel="apple-touch-icon" href="assets/favicon-64.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Serif+Display:ital@0;1&family=Orbitron:wght@600;700;800;900&family=Rajdhani:wght@500;600;700&family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Lenis Inertia Scroll (douglus.co Style) -->
+    <link rel="stylesheet" href="https://unpkg.com/lenis@1.3.27/dist/lenis.css" />
+    <link rel="stylesheet" href="styles.css" />
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Enoch Thompson",
+      "jobTitle": "Full-Stack Developer",
+      "url": "https://jahaziel.dev",
+      "sameAs": [
+        "https://github.com/thompson-dev1",
+        "https://www.linkedin.com/in/enoch-thompson-b9273a421"
+      ],
+      "knowsAbout": ["Python", "Flask", "PHP", "SQLite", "React", "Next.js", "Tailwind CSS", "Web Development", "Dashboard Design"],
+      "address": {
+        "@type": "PostalAddress",
+        "addressCountry": "GH"
+      }
+    }
+    </script>
+  </head>
+  <body class="is-loading">
+    <!-- Scroll Progress Bar -->
+    <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+
+    <!-- Minimal silhouette-to-page-color load transition -->
+    <div class="page-skeleton intro-loader" id="pageSkeleton" aria-hidden="true">
+      <img class="intro-loader__silhouette" src="assets/heropage/hero.png?v=2" alt="" />
+      <div class="intro-loader__welcome">
+        <p><span class="intro-loader__welcome-line">Hello, welcome to my <span class="intro-loader__welcome-accent">Portfolio</span></span></p>
+      </div>
+      <div class="intro-loader__loading">
+        <div class="intro-loader__loading-label"><span>Loading</span><span id="loaderPercent">00%</span></div>
+        <div class="intro-loader__track"><i id="loaderProgress"></i></div>
+      </div>
+    </div>
+
+    <!-- Noise & Interactive Rocket Cursor -->
+    <div class="noise" aria-hidden="true"></div>
+    <div class="cursor-rocket" aria-hidden="true">
+      <svg width="38" height="38" viewBox="0 0 38 38" fill="none">
+        <defs>
+          <linearGradient id="fuselageGrad" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#ffffff"/>
+            <stop offset="40%" stop-color="#f1f5f9"/>
+            <stop offset="70%" stop-color="#cbd5e1"/>
+            <stop offset="100%" stop-color="#64748b"/>
+          </linearGradient>
+          <linearGradient id="redAccentGrad" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#ff3b56"/>
+            <stop offset="60%" stop-color="#ff1e3c"/>
+            <stop offset="100%" stop-color="#b3001f"/>
+          </linearGradient>
+          <linearGradient id="flameGrad" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#ffffff"/>
+            <stop offset="20%" stop-color="#ffe600"/>
+            <stop offset="60%" stop-color="#ff5500"/>
+            <stop offset="100%" stop-color="#ff1e3c" stop-opacity="0.1"/>
+          </linearGradient>
+        </defs>
+        <!-- Exhaust Flame -->
+        <g class="flame-pulse">
+          <path d="M24 24 C29 29 34 35 37 37 C35 34 29 29 24 24 Z" fill="url(#flameGrad)" />
+          <path d="M23 23 Q32 32 35 35 Q32 32 23 23 Z" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round"/>
+        </g>
+        <!-- Tail Nozzle Ring -->
+        <path d="M22 25 L25 22 L26 23 L23 26 Z" fill="#334155"/>
+        <!-- Left Fin -->
+        <path d="M10 20 L4 27 C3.5 27.5 4.5 28.5 5.5 28 L15 24 Z" fill="url(#redAccentGrad)" stroke="#99001a" stroke-width="0.5"/>
+        <!-- Right Fin -->
+        <path d="M20 10 L27 4 C27.5 3.5 28.5 4.5 28 5.5 L24 15 Z" fill="url(#redAccentGrad)" stroke="#99001a" stroke-width="0.5"/>
+        <!-- Fuselage (Body) -->
+        <path d="M3 3 C11 5 23 16 25 24 C16 23 5 11 3 3 Z" fill="url(#fuselageGrad)" stroke="rgba(255,255,255,0.7)" stroke-width="0.6"/>
+        <!-- Nose Cone (Tip) -->
+        <path d="M3 3 C5.5 3.8 8.5 6.5 9.5 9.5 C6.5 8.5 3.8 5.5 3 3 Z" fill="url(#redAccentGrad)"/>
+        <!-- Cockpit Window -->
+        <circle cx="14.5" cy="14.5" r="3" fill="#05101a" stroke="#00f0ff" stroke-width="0.8"/>
+        <circle cx="13.8" cy="13.8" r="1" fill="#ffffff" opacity="0.9"/>
+      </svg>
+    </div>
+    <div class="cursor-glow" aria-hidden="true"></div>
+
+    <!-- Section Progress Indicator -->
+    <div class="section-indicator" aria-hidden="true">
+      <a href="/" class="indicator-dot active" data-section="hero" data-page-link="home"><span>Home</span></a>
+      <a href="/?page=work" class="indicator-dot" data-section="work" data-page-link="work"><span>Works</span></a>
+      <a href="/?page=playground" class="indicator-dot" data-section="experiments" data-page-link="playground"><span>Playground</span></a>
+      <a href="/?page=about" class="indicator-dot" data-section="about" data-page-link="about"><span>About</span></a>
+      <a href="/?page=contact" class="indicator-dot" data-section="contact" data-page-link="contact"><span>Contact</span></a>
+    </div>
+
+    <!-- Header -->
+    <header class="site-header" id="siteHeader">
+      <a class="brand" href="/" data-page-link="home" aria-label="Thompson-dev1 home">
+        <img class="brand-logo-img" src="assets/logo/logo.png" alt="Thompson-dev1 Logo" />
+      </a>
+      <nav class="nav-links" aria-label="Primary navigation">
+        <a href="/" class="nav-link rolling-link" data-text="Home" data-page-link="home"><span>Home</span></a>
+        <a href="/?page=work" class="nav-link rolling-link" data-text="Works" data-page-link="work"><span>Works</span></a>
+        <a href="/?page=playground" class="nav-link rolling-link" data-text="Playground" data-page-link="playground"><span>Playground</span></a>
+        <a href="/?page=about" class="nav-link rolling-link" data-text="About" data-page-link="about"><span>About</span></a>
+        <a href="/?page=contact" class="nav-link rolling-link" data-text="Contact" data-page-link="contact"><span>Contact</span></a>
+      </nav>
+      <div class="header-actions">
+        <a class="nav-cta magnetic" href="#contact-opening">
+          <span class="cta-pulse"></span>
+          Build with me
+        </a>
+        <button class="theme-toggle" type="button" data-theme-toggle aria-label="Theme: Auto" title="Theme: Auto"><span aria-hidden="true">◐</span><span class="theme-toggle-label">Auto</span></button>
+        <button class="mobile-menu-toggle" id="menuToggle" aria-label="Open menu" aria-controls="mobileMenu" aria-haspopup="true" aria-expanded="false">
+          <span class="menu-toggle-lines" aria-hidden="true"><i></i><i></i></span>
+          <span class="menu-toggle-label" aria-hidden="true">Menu</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- Compact page menu -->
+    <div class="mobile-menu" id="mobileMenu" aria-hidden="true" inert>
+      <div class="menu-topline">
+        <span class="menu-kicker"><i class="menu-status-dot"></i> Navigate</span>
+        <button class="menu-close" id="menuClose" type="button" aria-label="Close menu">Close <span aria-hidden="true">×</span></button>
+      </div>
+      <nav class="mobile-nav" aria-label="Main navigation">
+        <a href="/" class="mobile-link" data-page-link="home"><span class="menu-link-index">01</span><span>Home</span></a>
+        <a href="/?page=work" class="mobile-link" data-page-link="work"><span class="menu-link-index">02</span><span>Works</span></a>
+        <a href="/?page=playground" class="mobile-link" data-page-link="playground"><span class="menu-link-index">03</span><span>Playground</span></a>
+        <a href="/?page=about" class="mobile-link" data-page-link="about"><span class="menu-link-index">04</span><span>About</span></a>
+        <a href="/?page=contact" class="mobile-link" data-page-link="contact"><span class="menu-link-index">05</span><span>Contact</span></a>
+      </nav>
+      <div class="menu-appearance" role="group" aria-label="Color theme">
+        <span class="menu-appearance-label">Appearance</span>
+        <div class="theme-options">
+          <button type="button" data-theme-choice="auto" aria-pressed="true">Auto</button>
+          <button type="button" data-theme-choice="light" aria-pressed="false">Light</button>
+          <button type="button" data-theme-choice="dark" aria-pressed="false">Dark</button>
+        </div>
+      </div>
+      <div class="menu-footer">
+        <a href="mailto:enochthompson21@gmail.com">enochthompson21@gmail.com</a>
+        <div class="menu-socials">
+          <a href="https://github.com/thompson-dev1" target="_blank" rel="noreferrer">GitHub ↗</a>
+          <a href="https://www.linkedin.com/in/enoch-thompson-b9273a421" target="_blank" rel="noreferrer">LinkedIn ↗</a>
+        </div>
+      </div>
+    </div>
+
+    <main id="top">
+      <!-- Hero Section — BYK Concert Edition Style -->
+      <section class="hero byk-hero" data-section="hero" data-route-page="home">
+        <!-- Atmospheric Space Layers -->
+        <canvas id="starfield" class="hero-starfield" aria-hidden="true"></canvas>
+        <div class="hero-nebula" aria-hidden="true"></div>
+        <div class="hero-planet-glow" aria-hidden="true"></div>
+        <div class="hero-planet-horizon" aria-hidden="true">
+          <img class="hero-planet-img" src="assets/cosmic/red-planet-horizon.jpg" alt="" />
+        </div>
+
+        <!-- Floating Spacecraft & Astronauts (BYK Concert Style) -->
+        <img class="astro-float astro-float--1" src="assets/cosmic/astro.png" alt="" aria-hidden="true" />
+        <img class="astro-float astro-float--2" src="assets/cosmic/astro.png" alt="" aria-hidden="true" />
+        <img class="astro-float astro-float--3" src="assets/cosmic/astro2.png" alt="" aria-hidden="true" />
+
+        <div class="hero-grid">
+          <!-- Left: Frameless Cutout Figure (BYK Concert Style, zero containers) -->
+          <div class="hero-figure-wrap" id="artTilt">
+            <img class="hero-cutout-img" src="assets/heropage/hero.png?v=2" alt="Thompson — Full-Stack Developer" />
+          </div>
+
+          <!-- Right: Content Column -->
+          <div class="content">
+            <p class="eyebrow">
+              <span class="pulse-dot"></span>
+              AVAILABLE FOR SELECT PROJECTS // 2026
+            </p>
+
+            <h1 class="title">
+              <span class="title-line chrome">FULL-STACK</span>
+              <span class="title-year chrome">DEVELOPER</span>
+              <span class="title-sub">— CLEAN ARCHITECTURE & MEMORABLE INTERFACES —</span>
+            </h1>
+
+            <div class="meta-cards">
+              <div class="meta-card">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+                <div>
+                  <strong>Apps &amp; Digital Systems</strong>
+                  <span>Web and mobile apps, dashboards, APIs</span>
+                </div>
+              </div>
+              <div class="meta-card">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/><path d="M8 7h8M8 11h8"/></svg>
+                <div>
+                  <strong>IT &amp; Business Operations</strong>
+                  <span>Data management, project coordination, quality assurance</span>
+                </div>
+              </div>
+            </div>
+            <p class="hero-location-note">Accra, Ghana <span aria-hidden="true">·</span> Available for remote work worldwide</p>
+
+            <!-- Red Glowing Concert CTA -->
+            <div class="tickets-cta">
+              <a class="cta magnetic" href="#work">
+                <span>EXPLORE PROJECTS</span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+              </a>
+              <a class="cta cta-ghost magnetic" href="#contact-opening">
+                <span>START A CONVERSATION</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Scroll Indicator -->
+        <div class="hero-scroll-cue">
+          <div class="scroll-indicator-mouse">
+            <div class="scroll-indicator-dot"></div>
+          </div>
+          <span class="scroll-indicator-label">Scroll to explore</span>
+        </div>
+      </section>
+
+      <!-- Tech Marquee -->
+      <div class="marquee-wrapper" aria-label="Technology highlights">
+        <div class="marquee-track">
+          <div class="marquee-content">
+            <span class="marquee-item"><span class="marquee-dot"></span>Flask</span>
+            <span class="marquee-item"><span class="marquee-dot"></span>PHP</span>
+            <span class="marquee-item"><span class="marquee-dot"></span>SQLite</span>
+            <span class="marquee-item"><span class="marquee-dot"></span>React</span>
+            <span class="marquee-item"><span class="marquee-dot"></span>Next.js</span>
+            <span class="marquee-item"><span class="marquee-dot"></span>Tailwind</span>
+            <span class="marquee-item"><span class="marquee-dot"></span>Python</span>
+            <span class="marquee-item"><span class="marquee-dot"></span>Dashboards</span>
+            <span class="marquee-item"><span class="marquee-dot"></span>Document AI</span>
+            <span class="marquee-item"><span class="marquee-dot"></span>Framer Motion</span>
+            <span class="marquee-item"><span class="marquee-dot"></span>GSAP</span>
+            <span class="marquee-item"><span class="marquee-dot"></span>TypeScript</span>
+          </div>
+          <div class="marquee-content" aria-hidden="true">
+            <span class="marquee-item"><span class="marquee-dot"></span>Flask</span>
+            <span class="marquee-item"><span class="marquee-dot"></span>PHP</span>
+            <span class="marquee-item"><span class="marquee-dot"></span>SQLite</span>
+            <span class="marquee-item"><span class="marquee-dot"></span>React</span>
+            <span class="marquee-item"><span class="marquee-dot"></span>Next.js</span>
+            <span class="marquee-item"><span class="marquee-dot"></span>Tailwind</span>
+            <span class="marquee-item"><span class="marquee-dot"></span>Python</span>
+            <span class="marquee-item"><span class="marquee-dot"></span>Dashboards</span>
+            <span class="marquee-item"><span class="marquee-dot"></span>Document AI</span>
+            <span class="marquee-item"><span class="marquee-dot"></span>Framer Motion</span>
+            <span class="marquee-item"><span class="marquee-dot"></span>GSAP</span>
+            <span class="marquee-item"><span class="marquee-dot"></span>TypeScript</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Intro -->
+      <section class="section-shell intro-grid intro-editorial" data-route-page="home">
+        <div class="section-divider" aria-hidden="true" data-line-draw></div>
+        <div class="intro-editorial-copy" data-reveal-left>
+          <p class="eyebrow">
+            <span class="eyebrow-line"></span>
+            Education &amp; focus
+          </p>
+          <h2>From information technology to useful software.</h2>
+          <p class="intro-editorial-description">
+            My BSc in Information Technology Management gave me a foundation for understanding how technology
+            supports people and organizations. I carry that into full-stack work—bringing data, workflows, and
+            interfaces together to make complex work feel clear and dependable.
+          </p>
+          <a class="intro-about-link" href="/?page=about" data-page-link="about">
+            <span>More about me</span><span aria-hidden="true">↗</span>
+          </a>
+        </div>
+        <div class="intro-visual-stage" data-reveal-right>
+          <figure class="intro-portrait">
+            <img src="assets/heropage/Graduation%20Style_%20Checking%20Time.png" alt="Thompson in his graduation gown and stole" loading="lazy" decoding="async" />
+          </figure>
+          <div class="intro-qualification-card" aria-label="Bachelor of Science in Information Technology Management, 2026">
+            <span class="intro-qualification-mark" aria-hidden="true">BSc</span>
+            <span class="intro-qualification-copy">
+              <small>Qualification · 2026</small>
+              <strong>Information Technology Management</strong>
+              <span>Bachelor of Science</span>
+            </span>
+          </div>
+        </div>
+      </section>
+
+      <section class="section-shell capability-overview" data-route-page="home" aria-labelledby="capability-heading">
+        <div class="capability-overview-heading" data-reveal>
+          <p class="eyebrow"><span class="eyebrow-line"></span> What I bring</p>
+          <h2 id="capability-heading">Practical technology, operations, and delivery.</h2>
+          <p>I connect the software with the data, processes, and coordination that help teams put it to work.</p>
+        </div>
+        <div class="capability-overview-grid">
+          <article class="capability-overview-card" data-reveal>
+            <span class="capability-overview-index">01</span>
+            <h3>Apps &amp; Software</h3>
+            <p>Web and mobile apps, dashboards, APIs, and full-stack features.</p>
+          </article>
+          <article class="capability-overview-card" data-reveal>
+            <span class="capability-overview-index">02</span>
+            <h3>IT &amp; Business Operations</h3>
+            <p>IT work and business processes shaped around dependable day-to-day workflows.</p>
+          </article>
+          <article class="capability-overview-card" data-reveal>
+            <span class="capability-overview-index">03</span>
+            <h3>Data Management</h3>
+            <p>Organized data workflows that keep information useful, consistent, and accessible.</p>
+          </article>
+          <article class="capability-overview-card" data-reveal>
+            <span class="capability-overview-index">04</span>
+            <h3>Project Coordination &amp; QA</h3>
+            <p>Coordinating delivery, testing features, debugging issues, and checking quality.</p>
+          </article>
+        </div>
+      </section>
+
+      <!-- Featured Work -->
+      <section class="section-shell work-section" id="work" data-section="work" data-route-page="work">
+        <div class="section-heading page-opening page-opening--work" data-reveal>
+          <p class="eyebrow">
+            <span class="eyebrow-line"></span>
+            Selected work · 01—05
+          </p>
+          <h2>Useful systems for real work.</h2>
+          <p>
+            Products and experiences built to make complex workflows clearer, from health and analytics to fitness, agriculture, and creative portfolios.
+          </p>
+          <a class="page-scroll-cue" href="#work-projects"><span>Scroll to explore the work</span><span aria-hidden="true">↓</span></a>
+        </div>
+
+        <div class="project-stack" id="work-projects">
+          <article class="project-card project-card--voima flagship tilt-card" data-reveal>
+            <div class="card-shine" aria-hidden="true"></div>
+            <div class="project-meta">
+              <span class="project-number" data-count-up="01">01</span>
+              <span>Health-tech platform</span>
+            </div>
+            <div class="project-content">
+              <h3>Voima Initiative</h3>
+              <p class="project-kicker">Full-Stack Developer Intern · Remote</p>
+              <p>
+                As part of Voima’s intern team, helped redesign its live platform for sickle cell
+                care. Enhanced the React interface with modern UI and scroll storytelling, built
+                backend features, and managed Sanity content. Worked with the founder and product
+                team on testing, debugging, performance, and accessibility.
+              </p>
+              <div class="feature-grid" data-stagger>
+                <span>React</span>
+                <span>Node.js · Express</span>
+                <span>Prisma · PostgreSQL</span>
+                <span>Sanity CMS</span>
+              </div>
+              <div class="project-actions">
+                <a class="project-link primary-link magnetic" href="https://www.voimainitiative.com/" target="_blank" rel="noreferrer">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/></svg> View Live Site
+                </a>
+              </div>
+            </div>
+            <div class="project-visual voima-visual" data-reveal-scale>
+              <img src="assets/screenshots/voima-live.jpg" alt="Voima Initiative website showing its story and community impact" loading="lazy" decoding="async" />
+              <img class="voima-visual-detail" src="assets/screenshots/voima-platform-detail.jpg" alt="" loading="lazy" decoding="async" />
+              <span class="voima-visual-badge">Live project · Voima Initiative</span>
+            </div>
+          </article>
+          <article class="project-card tilt-card" data-reveal>
+            <div class="card-shine" aria-hidden="true"></div>
+            <div class="project-meta">
+              <span class="project-number" data-count-up="02">02</span>
+              <span>Fitness product</span>
+            </div>
+            <div class="project-content">
+              <h3>CalorieAI</h3>
+              <p class="project-kicker">Science-Based Calorie & Macro Tracking Platform</p>
+              <p>
+                A precision fitness product with BMR calculation, workout tracking, macro
+                breakdowns, and nutrition-focused product messaging — built with clean
+                HTML, CSS, and JavaScript.
+              </p>
+              <div class="feature-grid" data-stagger>
+                <span>BMR calculator</span>
+                <span>Macro tracking</span>
+                <span>Workout plans</span>
+                <span>Responsive UI</span>
+              </div>
+              <div class="project-actions">
+                <a class="project-link primary-link magnetic" href="https://caloriea-i.netlify.app" target="_blank" rel="noreferrer">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/></svg> Visit Live Site
+                </a>
+              </div>
+            </div>
+            <div class="project-visual" data-reveal-scale>
+              <img
+                src="assets/screenshots/calorieai.jpg"
+                alt="CalorieAI science-based calorie and macro tracking dashboard"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+          </article>
+          <article class="project-card tilt-card" data-reveal>
+            <div class="card-shine" aria-hidden="true"></div>
+            <div class="project-meta">
+              <span class="project-number" data-count-up="03">03</span>
+              <span>Creative frontend</span>
+            </div>
+            <div class="project-content">
+              <h3>Model Portfolio</h3>
+              <p class="project-kicker">Fashion & Commercial Model Portfolio Website</p>
+              <p>
+                A Next.js portfolio experience for a model, built around editorial imagery, campaign
+                storytelling, testimonials, booking calls-to-action, and animated visual polish.
+              </p>
+              <div class="feature-grid" data-stagger>
+                <span>Next.js</span>
+                <span>Framer Motion</span>
+                <span>GSAP</span>
+                <span>Image-led UI</span>
+              </div>
+              <div class="project-actions">
+                <a class="project-link primary-link magnetic" href="https://priscillaa-portfolio.netlify.app" target="_blank" rel="noreferrer">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/></svg> View Live Site
+                </a>
+              </div>
+            </div>
+            <div class="project-visual portfolio-visual" data-reveal-scale>
+              <img
+                src="assets/screenshots/port.jpg"
+                alt="Model portfolio preview showing editorial gallery cards"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+          </article>
+          <article class="project-card flagship tilt-card" data-reveal>
+            <div class="card-shine" aria-hidden="true"></div>
+            <div class="project-meta">
+              <span class="project-number" data-count-up="04">04</span>
+              <span>Marketplace platform</span>
+            </div>
+            <div class="project-content">
+              <h3>AGRIC DSS</h3>
+              <p class="project-kicker">Agricultural Marketplace & Decision Support Platform</p>
+              <p>
+                A PHP and SQLite marketplace connecting farmers, buyers, and admins through product
+                listings, cart flows, orders, subscriptions, messaging, reports, and approvals.
+              </p>
+              <div class="feature-grid" data-stagger>
+                <span>Farmer flows</span>
+                <span>Buyer cart</span>
+                <span>Admin controls</span>
+                <span>Sales reports</span>
+              </div>
+              <div class="project-actions">
+                <a class="project-link magnetic" href="https://github.com/thompson-dev1/agric_DDS" target="_blank" rel="noreferrer">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg> View Repository
+                </a>
+                <a class="project-link primary-link magnetic" href="https://agricdss-production.up.railway.app" target="_blank" rel="noreferrer">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/></svg> Visit Live Demo
+                </a>
+              </div>
+            </div>
+            <div class="project-visual market-visual" data-reveal-scale>
+              <img
+                src="assets/screenshots/agric-dss.jpg"
+                alt="AGRIC DSS homepage showing farming marketplace hero section"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+          </article>
+          <article class="project-card tilt-card" data-reveal>
+            <div class="card-shine" aria-hidden="true"></div>
+            <div class="project-meta">
+              <span class="project-number" data-count-up="05">05</span>
+              <span>Analytics dashboard</span>
+            </div>
+            <div class="project-content">
+              <h3>SME Analytics</h3>
+              <p class="project-kicker">Social Media Insights for Small Businesses</p>
+              <p>
+                A social media analytics product that helps small businesses understand their
+                performance through CSV uploads, engagement trends, platform comparisons, and
+                sentiment insights.
+              </p>
+              <div class="feature-grid" data-stagger>
+                <span>CSV imports</span>
+                <span>Engagement trends</span>
+                <span>Platform comparisons</span>
+                <span>Sentiment insights</span>
+              </div>
+              <div class="project-actions">
+                <a class="project-link primary-link magnetic" href="https://sme-analyts.netlify.app/" target="_blank" rel="noreferrer">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/></svg> View Live Site
+                </a>
+              </div>
+            </div>
+            <div class="project-visual" data-reveal-scale>
+              <img src="assets/screenshots/sme-analytics.jpg" alt="SME Analytics dashboard for small business social media insights" loading="lazy" decoding="async" />
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- Live Experiments -->
+      <section class="section-shell experiments-section" id="experiments" data-section="experiments" data-route-page="playground">
+        <div class="section-heading page-opening page-opening--playground" data-reveal>
+          <p class="eyebrow">
+            <span class="eyebrow-line"></span>
+            Playground · Experiments
+          </p>
+          <h2>Things I built to see what could happen.</h2>
+          <p>
+            A collection of useful interfaces and playful ideas, from academic tools to personal
+            web experiences.
+          </p>
+          <a class="page-scroll-cue" href="#playground-projects"><span>Scroll through the playground</span><span aria-hidden="true">↓</span></a>
+        </div>
+
+        <div class="experiments-grid" id="playground-projects">
+
+          <a
+            class="experiment-card tilt-card"
+            href="https://huggingface.co/spaces/Jahaziel2121/AADES"
+            target="_blank"
+            rel="noreferrer"
+            data-reveal
+          >
+            <div class="card-shine" aria-hidden="true"></div>
+            <div class="experiment-img-wrap">
+              <img
+                src="assets/screenshots/add.jpg"
+                alt="AADES academic document evaluation platform"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+            <div class="experiment-content">
+              <span class="experiment-tag">Academic platform</span>
+              <h3>AADES</h3>
+              <p>
+                An academic document evaluation system for structure, formatting, grammar signals,
+                and similarity, with student, supervisor, and admin workflows.
+              </p>
+              <span class="experiment-link">
+                Visit live demo
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+              </span>
+            </div>
+          </a>
+
+          <a
+            class="experiment-card tilt-card"
+            href="https://voluble-travesseiro-04fbe6.netlify.app"
+            target="_blank"
+            rel="noreferrer"
+            data-reveal
+          >
+            <div class="card-shine" aria-hidden="true"></div>
+            <div class="experiment-img-wrap">
+              <img
+                src="assets/screenshots/love-mail.jpg"
+                alt="Love Mail interactive music and letter screenshot"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+            <div class="experiment-content">
+              <span class="experiment-tag">Interactive experience</span>
+              <h3>Love Mail</h3>
+              <p>
+                A playful React experience with an animated envelope, love letter flow, and
+                Valentine-themed interaction design.
+              </p>
+              <span class="experiment-link">
+                Visit live
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+              </span>
+            </div>
+          </a>
+
+          <a
+            class="experiment-card tilt-card"
+            href="https://appeal-hub.netlify.app"
+            target="_blank"
+            rel="noreferrer"
+            data-reveal
+          >
+            <div class="card-shine" aria-hidden="true"></div>
+            <div class="experiment-img-wrap">
+              <img
+                src="assets/screenshots/appeal-hub.jpg"
+                alt="AppealHub academic appeal system homepage"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+            <div class="experiment-content">
+              <span class="experiment-tag">Academic platform</span>
+              <h3>AppealHub</h3>
+              <p>
+                An academic appeal system with smart submission, real-time tracking,
+                AI draft review, and an admin analytics dashboard.
+              </p>
+              <span class="experiment-link">
+                Visit live
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+              </span>
+            </div>
+          </a>
+        </div>
+      </section>
+
+      <!-- Interactive Build Console -->
+      <section class="section-shell command-section" data-route-page="playground">
+        <div class="command-copy" data-reveal-left>
+          <p class="eyebrow">
+            <span class="eyebrow-line"></span>
+            Signature interaction
+          </p>
+          <h2>The Build Console</h2>
+          <p>
+            This playful terminal-style section is the site's memorable interaction. Click
+            commands to inspect projects, stack, process, and contact details.
+          </p>
+        </div>
+        <div class="interactive-console" data-reveal-right>
+          <div class="console-topbar">
+            <span></span>
+            <span></span>
+            <span></span>
+            <strong>~/jahaziel</strong>
+          </div>
+          <div class="console-output" id="consoleOutput" aria-live="polite">
+            <span class="prompt">$</span>
+            <span id="consoleText">select a command to inspect Thompson's work</span>
+            <span class="blink-cursor">_</span>
+          </div>
+          <div class="command-buttons" aria-label="Build console commands">
+            <button data-command="projects" class="magnetic">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+              view projects
+            </button>
+            <button data-command="stack" class="magnetic">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+              inspect stack
+            </button>
+            <button data-command="process" class="magnetic">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+              run process
+            </button>
+            <button data-command="contact" class="magnetic">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              open contact
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Process -->
+      <section class="page-opening about-opening" data-route-page="about">
+        <div class="about-opening-backdrop" aria-hidden="true"></div>
+        <p class="eyebrow" data-reveal><span class="eyebrow-line"></span> About Enoch Thompson</p>
+        <h1 data-word-reveal>Enoch Thompson</h1>
+        <p class="about-opening-copy" data-reveal>
+          Full-stack developer building practical web systems, thoughtful interfaces, and digital tools
+          that bring order to complicated work.
+        </p>
+        <a class="page-scroll-cue" href="#process" data-reveal><span>Scroll to know me</span><span aria-hidden="true">↓</span></a>
+      </section>
+
+      <section class="section-shell process-section" id="process" data-section="process" data-route-page="about">
+        <div class="section-heading" data-reveal>
+          <p class="eyebrow">
+            <span class="eyebrow-line"></span>
+            Process
+          </p>
+          <h2 data-word-reveal>How I turn an idea into a working system.</h2>
+        </div>
+        <div class="process-grid" data-stagger>
+          <article class="process-card">
+            <div class="process-icon">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
+            </div>
+            <span class="process-step">01</span>
+            <h3>Map the workflow</h3>
+            <p>Understand the users, roles, screens, data, and messy real-world rules before touching code.</p>
+          </article>
+          <article class="process-card">
+            <div class="process-icon">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+            </div>
+            <span class="process-step">02</span>
+            <h3>Build the core</h3>
+            <p>Create the database structure, authentication flow, routes, and essential user journeys.</p>
+          </article>
+          <article class="process-card">
+            <div class="process-icon">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>
+            </div>
+            <span class="process-step">03</span>
+            <h3>Polish the interface</h3>
+            <p>Shape the layout, hierarchy, responsiveness, and motion so the product feels clear and trusted.</p>
+          </article>
+          <article class="process-card">
+            <div class="process-icon">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            </div>
+            <span class="process-step">04</span>
+            <h3>Package the story</h3>
+            <p>Document what was built, capture screenshots, prepare demos, and make the work easy to review.</p>
+          </article>
+        </div>
+      </section>
+
+      <!-- About -->
+      <section class="section-shell about-section" id="about" data-section="about" data-route-page="about">
+        <div class="about-visual" data-reveal-scale>
+          <div class="about-portrait-wrap">
+            <img src="assets/screenshots/IMG_2039.jpg" alt="Thompson - Full Stack Developer" class="about-portrait" width="4284" height="5712" loading="lazy" decoding="async" fetchpriority="low" />
+            <div class="about-portrait-glow"></div>
+          </div>
+        </div>
+        <div class="about-content" data-reveal-right>
+          <div class="about-panel" data-stagger>
+            <p class="eyebrow">
+              <span class="eyebrow-line"></span>
+              About
+            </p>
+            <h2 data-word-reveal>I like building software that brings order to complicated work.</h2>
+            <p style="margin-bottom: 32px;">
+              My projects sit at the intersection of practical workflows and clean web experiences: academic
+              document evaluation, agricultural marketplaces, dashboards, admin tools, and creative portfolio
+              sites. I care about the whole path from idea to interface, from database to final detail.
+            </p>
+            <div class="capability-list" aria-label="Capabilities">
+              <span>Frontend interfaces</span>
+              <span>Backend workflows</span>
+              <span>Database-backed apps</span>
+              <span>Role-based dashboards</span>
+              <span>Responsive design</span>
+              <span>Case-study storytelling</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Contact -->
+      <section class="contact-opening" id="contact-opening" data-section="contact" data-route-page="contact">
+        <div class="contact-opening-orb contact-opening-orb--top" aria-hidden="true"></div>
+        <div class="contact-opening-orb contact-opening-orb--bottom" aria-hidden="true"></div>
+        <div class="contact-opening-topline">
+          <p class="eyebrow"><span class="eyebrow-line"></span> Contact · Open for projects</p>
+          <span>Ghana · Working worldwide</span>
+        </div>
+        <h1 class="contact-opening-title" data-word-reveal>
+          <span class="contact-heading-line"><span class="contact-title-sans">Let’s create</span> <span class="contact-title-accent">work</span></span>
+          <span class="contact-heading-line contact-heading-serif">that matters.</span>
+        </h1>
+        <p class="contact-opening-copy">Have an idea?<br />Let’s talk about it.</p>
+        <div class="contact-opening-bottom">
+          <a class="page-scroll-cue" href="#contact-form"><span>Scroll down to send a message</span><span aria-hidden="true">↓</span></a>
+          <dl class="contact-opening-details">
+            <div><dt>Email</dt><dd><a href="mailto:enochthompson21@gmail.com">enochthompson21@gmail.com</a></dd></div>
+            <div><dt>GitHub</dt><dd><a href="https://github.com/thompson-dev1" target="_blank" rel="noreferrer">thompson-dev1 ↗</a></dd></div>
+            <div><dt>Location</dt><dd>Ghana · GMT</dd></div>
+          </dl>
+        </div>
+      </section>
+
+      <section class="section-shell contact-section" id="contact" data-route-page="contact" data-reveal-scale>
+        <div class="contact-glow" aria-hidden="true"></div>
+        <!-- Contact Form -->
+        <div class="contact-page-form" id="contact-form">
+          <div class="contact-form-heading">
+            <p class="eyebrow"><span class="eyebrow-line"></span> Start a conversation</p>
+            <h2>Tell me what you’re working on.</h2>
+          </div>
+          <form class="contact-form" action="https://formspree.io/f/xbdbjgdk" method="POST" id="contactForm">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="contactName">Name</label>
+                <input type="text" id="contactName" name="name" placeholder="Your name" required />
+              </div>
+              <div class="form-group">
+                <label for="contactEmail">Email</label>
+                <input type="email" id="contactEmail" name="email" placeholder="you@example.com" required />
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="contactMessage">Message</label>
+              <textarea id="contactMessage" name="message" rows="5" placeholder="Tell me about your project..." required></textarea>
+            </div>
+            <button type="submit" class="button primary magnetic form-submit">
+              <span>Send message</span>
+              <svg class="btn-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </button>
+          </form>
+
+          <div class="contact-divider"></div>
+
+          <p class="contact-alt-text">Or reach me directly</p>
+          <div class="contact-actions">
+            <a class="button ghost magnetic" href="mailto:enochthompson21@gmail.com"><span>Email</span></a>
+            <a class="button ghost magnetic" href="https://github.com/thompson-dev1" target="_blank" rel="noreferrer"><span>GitHub</span></a>
+            <a class="button ghost magnetic" href="https://www.linkedin.com/in/enoch-thompson-b9273a421" target="_blank" rel="noreferrer"><span>LinkedIn</span></a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-ambient-glow" aria-hidden="true"></div>
+
+      <div class="footer-container">
+        <!-- Giant Emblem Logo covering the whole footer -->
+        <div class="footer-hero-logo-wrap">
+          <img class="footer-giant-logo-bg" src="assets/logo/logo.png" alt="" aria-hidden="true" loading="lazy" decoding="async" />
+          <img class="footer-giant-logo" src="assets/logo/logo.png" alt="Thompson-dev1 Logo" loading="lazy" decoding="async" />
+        </div>
+
+        <div class="footer-bottom-bar">
+          <p class="footer-copy">Designed &amp; built by Thompson — 2026</p>
+          <div class="footer-socials">
+            <a href="mailto:enochthompson21@gmail.com" class="footer-link">Email</a>
+            <span class="footer-dot">/</span>
+            <a href="https://github.com/thompson-dev1" target="_blank" rel="noreferrer" class="footer-link">GitHub</a>
+            <span class="footer-dot">/</span>
+            <a href="https://www.linkedin.com/in/enoch-thompson-b9273a421" target="_blank" rel="noreferrer" class="footer-link">LinkedIn</a>
+          </div>
+          <a href="#top" class="back-to-top magnetic" aria-label="Back to top">
+            <span>Back to top</span>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+          </a>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Lenis Inertia Momentum Scroll (douglus.co Style) -->
+    <script src="https://unpkg.com/lenis@1.3.27/dist/lenis.min.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>

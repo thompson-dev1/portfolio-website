@@ -1,0 +1,13 @@
+{
+  "name": "jahaziel-portfolio",
+  "version": "1.0.0",
+  "description": "Jahaziel - Full-Stack Developer Portfolio",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "keywords": [],
+  "author": "Jahaziel",
+  "license": "ISC"
+}
+
