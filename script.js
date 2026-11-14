@@ -759,64 +759,6 @@ if (pageSkeleton) {
   }, 100);
 }
 
-// Add perspective tilt and a moving highlight to project cards.
-const tiltCards = document.querySelectorAll(".tilt-card");
-tiltCards.forEach((card) => {
-  let rect = null;
-  let isHovered = false;
-  let targetRotX = 0, targetRotY = 0;
-  let curRotX = 0, curRotY = 0;
-  let rafId = null;
-
-  const animateTilt = () => {
-    if (!isHovered && Math.abs(curRotX) < 0.05 && Math.abs(curRotY) < 0.05) {
-      card.style.transform = "perspective(1000px) rotateX(0deg) rotateY(0deg)";
-      cancelAnimationFrame(rafId);
-      rafId = null;
-      return;
-    }
-
-    curRotX += (targetRotX - curRotX) * 0.14;
-    curRotY += (targetRotY - curRotY) * 0.14;
-
-    card.style.transform = `perspective(1000px) rotateX(${curRotX.toFixed(2)}deg) rotateY(${curRotY.toFixed(2)}deg)`;
-    rafId = requestAnimationFrame(animateTilt);
-  };
-
-  card.addEventListener("mouseenter", () => {
-    rect = card.getBoundingClientRect();
-    isHovered = true;
-    if (!rafId) rafId = requestAnimationFrame(animateTilt);
-  });
-
-  card.addEventListener("mousemove", (e) => {
-    if (!rect) rect = card.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-
-    const xc = rect.width / 2;
-    const yc = rect.height / 2;
-
-    targetRotX = (yc - y) / 18;
-    targetRotY = (x - xc) / 18;
-
-    // Move dynamic specular light reflection
-    const shinePercentX = ((x / rect.width) * 100).toFixed(1);
-    const shinePercentY = ((y / rect.height) * 100).toFixed(1);
-    card.style.setProperty("--shine-x", `${shinePercentX}%`);
-    card.style.setProperty("--shine-y", `${shinePercentY}%`);
-
-    if (!rafId) rafId = requestAnimationFrame(animateTilt);
-  });
-
-  card.addEventListener("mouseleave", () => {
-    isHovered = false;
-    targetRotX = 0;
-    targetRotY = 0;
-    if (!rafId) rafId = requestAnimationFrame(animateTilt);
-  });
-});
-
 // --- Floating Navigation Dots / Section Tracker ---
 const sections = document.querySelectorAll("section[data-section]");
 const indicatorDots = document.querySelectorAll(".indicator-dot");
