@@ -5,7 +5,7 @@
   --line-color: rgba(243, 238, 223, 0.08);
   --line-hover: rgba(255, 30, 60, 0.35);
   
-  /* Curated BYK Concert Crimson & Chrome Palette */
+  /* Theme color tokens */
   --primary: #ff1e3c; /* Signature Crimson Red */
   --primary-glow: rgba(255, 30, 60, 0.3);
   --secondary: #ff6a3d; /* Sunset Coral */
@@ -1441,9 +1441,9 @@ p {
 }
 
 /* =====================================================
-   HERO SECTION — BYK CONCERT EDITION STYLE
+   HERO SECTION
    ===================================================== */
-.hero.byk-hero {
+.hero.hero-space {
   position: relative;
   width: 100%;
   min-height: 100vh;
@@ -1459,7 +1459,7 @@ p {
 }
 
 @media (min-height: 620px) and (min-width: 981px) {
-  .hero.byk-hero {
+  .hero.hero-space {
     height: 100vh;
     height: 100dvh;
     max-height: none;
@@ -1511,7 +1511,7 @@ p {
   animation: planetPulse 6s ease-in-out infinite;
 }
 
-/* Red Planet Horizon with Astronaut on Surface (BYK Concert Style) */
+/* Planet horizon and lighting */
 .hero-planet-horizon {
   position: absolute;
   left: 0;
@@ -1542,7 +1542,7 @@ p {
   50% { opacity: 1; }
 }
 
-/* Floating Spacecraft & Astronauts (BYK Concert Style) */
+/* Floating astronaut artwork */
 .astro-float {
   position: absolute;
   top: 0;
@@ -3534,11 +3534,11 @@ p {
 }
 
 /* =====================================================
-   APPLE-STYLE ANIMATION SYSTEM
+   ENTRANCE AND REVEAL ANIMATIONS
    ===================================================== */
 
-/* --- Apple Entrance: Initial hidden state --- */
-.apple-entrance {
+/* Initial hidden state for entrance elements */
+.entrance-reveal {
   opacity: 0;
   filter: blur(12px);
   transform: translateY(50px);
@@ -3546,20 +3546,20 @@ p {
 }
 
 /* Triggered after preloader via .hero-revealed on body */
-body.hero-revealed .apple-entrance {
-  animation: appleEntranceIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+body.hero-revealed .entrance-reveal {
+  animation: entranceRevealIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 /* Stagger delays based on data-entrance-order */
-body.hero-revealed .apple-entrance[data-entrance-order="1"] { animation-delay: 0.05s; }
-body.hero-revealed .apple-entrance[data-entrance-order="2"] { animation-delay: 0.2s; }
-body.hero-revealed .apple-entrance[data-entrance-order="3"] { animation-delay: 0.4s; }
-body.hero-revealed .apple-entrance[data-entrance-order="4"] { animation-delay: 0.6s; }
-body.hero-revealed .apple-entrance[data-entrance-order="5"] { animation-delay: 0.8s; }
-body.hero-revealed .apple-entrance[data-entrance-order="6"] { animation-delay: 1.0s; }
-body.hero-revealed .apple-entrance[data-entrance-order="7"] { animation-delay: 1.3s; }
+body.hero-revealed .entrance-reveal[data-entrance-order="1"] { animation-delay: 0.05s; }
+body.hero-revealed .entrance-reveal[data-entrance-order="2"] { animation-delay: 0.2s; }
+body.hero-revealed .entrance-reveal[data-entrance-order="3"] { animation-delay: 0.4s; }
+body.hero-revealed .entrance-reveal[data-entrance-order="4"] { animation-delay: 0.6s; }
+body.hero-revealed .entrance-reveal[data-entrance-order="5"] { animation-delay: 0.8s; }
+body.hero-revealed .entrance-reveal[data-entrance-order="6"] { animation-delay: 1.0s; }
+body.hero-revealed .entrance-reveal[data-entrance-order="7"] { animation-delay: 1.3s; }
 
-@keyframes appleEntranceIn {
+@keyframes entranceRevealIn {
   0% {
     opacity: 0;
     filter: blur(12px);
@@ -3576,12 +3576,12 @@ body.hero-revealed .apple-entrance[data-entrance-order="7"] { animation-delay: 1
 }
 
 /* Portrait visual gets a special scale entrance */
-body.hero-revealed .hero-backdrop.apple-entrance,
-body.hero-revealed .hero-liquid-wrapper.apple-entrance {
-  animation: appleVisualIn 1.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+body.hero-revealed .hero-backdrop.entrance-reveal,
+body.hero-revealed .hero-liquid-wrapper.entrance-reveal {
+  animation: visualRevealIn 1.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
-@keyframes appleVisualIn {
+@keyframes visualRevealIn {
   0% {
     opacity: 0;
     filter: blur(20px);
@@ -3597,7 +3597,7 @@ body.hero-revealed .hero-liquid-wrapper.apple-entrance {
   }
 }
 
-/* --- Apple Scroll Reveal for all sections below hero --- */
+/* Scroll reveals for sections below the hero */
 [data-reveal],
 [data-reveal-left],
 [data-reveal-right],
@@ -3708,8 +3708,8 @@ body.hero-revealed .hero-liquid-wrapper.apple-entrance {
   animation: none !important;
 }
 
-/* --- Apple-Style Word-by-Word Reveal --- */
-.hero-headline .apple-word {
+/* Word-by-word headline reveal */
+.hero-headline .reveal-word {
   display: inline-block;
   opacity: 0;
   filter: blur(8px);
@@ -3719,7 +3719,7 @@ body.hero-revealed .hero-liquid-wrapper.apple-entrance {
               transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.hero-headline .apple-word.word-visible {
+.hero-headline .reveal-word.word-visible {
   opacity: 1;
   filter: blur(0px);
   transform: translateY(0);
@@ -3783,7 +3783,7 @@ body.hero-revealed .hero-liquid-wrapper.apple-entrance {
   background: var(--line-color);
 }
 
-/* --- Apple Scroll Indicator --- */
+/* Scroll indicator */
 .scroll-indicator {
   position: absolute;
   bottom: 14px;
@@ -3843,17 +3843,17 @@ body.hero-revealed .hero-liquid-wrapper.apple-entrance {
   pointer-events: none;
 }
 
-/* --- Apple Scroll Parallax on Hero --- */
-.hero.apple-scroll-active .hero-content {
+/* Hero parallax */
+.hero.hero-scroll-active .hero-content {
   transition: none;
 }
 
-.hero.apple-scroll-active .hero-backdrop,
-.hero.apple-scroll-active .hero-liquid-wrapper {
+.hero.hero-scroll-active .hero-backdrop,
+.hero.hero-scroll-active .hero-liquid-wrapper {
   transition: none;
 }
 
-/* --- Enhanced Button Hover (Apple spring) --- */
+/* Button hover motion */
 .button.primary {
   position: relative;
   overflow: hidden;
@@ -3873,10 +3873,10 @@ body.hero-revealed .hero-liquid-wrapper.apple-entrance {
 }
 
 .button.primary:hover::after {
-  animation: appleShimmer 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation: buttonShimmer 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
-@keyframes appleShimmer {
+@keyframes buttonShimmer {
   0% { transform: translateX(-150%); }
   100% { transform: translateX(150%); }
 }
@@ -3929,7 +3929,7 @@ body.hero-revealed .hero-liquid-wrapper.apple-entrance {
     display: none;
   }
 
-  .hero.byk-hero {
+  .hero.hero-space {
     position: relative;
     height: auto;
     min-height: 100vh;
@@ -3952,7 +3952,7 @@ body.hero-revealed .hero-liquid-wrapper.apple-entrance {
     text-align: center;
   }
 
-  /* Background Hero Figure on Mobile (Matching BYK Concert Space Portrait) */
+  /* Portrait background on mobile */
   .hero-figure-wrap {
     position: absolute;
     top: -95px;
@@ -4248,7 +4248,7 @@ body.hero-revealed .hero-liquid-wrapper.apple-entrance {
     animation: none !important;
 }
 
-  /* Red Planet Horizon with Astronaut on Surface at bottom (BYK Concert Style) */
+  /* Planet horizon on mobile */
   .hero-planet-glow {
     position: absolute;
     left: 50%;
@@ -4444,7 +4444,7 @@ body.hero-revealed .hero-liquid-wrapper.apple-entrance {
 }
 
 /* =====================================================
-   LENIS INERTIA SCROLL & INTERACTION SUITE (douglus.co Style)
+   SMOOTH SCROLLING AND INTERACTION EFFECTS
    ===================================================== */
 html.lenis, html.lenis body {
   height: auto;
@@ -4528,7 +4528,7 @@ html.lenis, html.lenis body {
   }
 }
 
-/* Rolling Typography Hover Interaction (douglus.co Signature) */
+/* Rolling text hover effect */
 .rolling-link {
   position: relative;
   display: inline-flex;
@@ -5226,7 +5226,7 @@ body[data-active-page="contact"] .contact-page-form .contact-actions {
   border-color: rgba(38, 32, 34, 0.12);
   box-shadow: 0 16px 38px rgba(44, 34, 35, 0.1);
 }
-:root[data-theme="light"] .hero.byk-hero { background: #f5f2eb; }
+:root[data-theme="light"] .hero.hero-space { background: #f5f2eb; }
 :root[data-theme="light"] .hero-backdrop,
 :root[data-theme="light"] .hero-liquid-wrapper {
   background-color: #f5f2eb;
@@ -5427,8 +5427,8 @@ body[data-active-page="contact"] .contact-page-form .contact-actions {
   [data-reveal-scale],
   [data-stagger] > *,
   [data-word-reveal] .word,
-  .apple-entrance,
-  .hero-headline .apple-word {
+  .entrance-reveal,
+  .hero-headline .reveal-word {
     opacity: 1 !important;
     transform: none !important;
     filter: none !important;
@@ -5885,10 +5885,10 @@ body.hero-revealed .hero-planet-horizon {
 body.hero-revealed .site-header.loader-header-enter {
   animation: loaderHeaderReveal 700ms cubic-bezier(0.16, 1, 0.3, 1) both;
 }
-body.hero-revealed .apple-entrance { animation-duration: 850ms; }
-body.hero-revealed .apple-entrance[data-entrance-order="1"] { animation-delay: 0.03s; }
-body.hero-revealed .apple-entrance[data-entrance-order="2"] { animation-delay: 0.1s; }
-body.hero-revealed .apple-entrance[data-entrance-order="3"] { animation-delay: 0.18s; }
+body.hero-revealed .entrance-reveal { animation-duration: 850ms; }
+body.hero-revealed .entrance-reveal[data-entrance-order="1"] { animation-delay: 0.03s; }
+body.hero-revealed .entrance-reveal[data-entrance-order="2"] { animation-delay: 0.1s; }
+body.hero-revealed .entrance-reveal[data-entrance-order="3"] { animation-delay: 0.18s; }
 @keyframes loaderHeaderReveal {
   from { opacity: 0; filter: blur(10px); transform: translate(-50%, -24px); }
   to { opacity: 1; filter: blur(0); transform: translate(-50%, 0); }
@@ -5973,7 +5973,7 @@ body[data-active-page="contact"] .contact-opening {
     width: min(1200px, calc(100% - 36px));
   }
 
-  .hero.byk-hero {
+  .hero.hero-space {
     padding-left: max(16px, env(safe-area-inset-left));
     padding-right: max(16px, env(safe-area-inset-right));
     padding-bottom: calc(36px + env(safe-area-inset-bottom));
@@ -6170,7 +6170,7 @@ body[data-active-page="contact"] .contact-opening {
 }
 
 @media (max-height: 520px) and (orientation: landscape) {
-  .hero.byk-hero {
+  .hero.hero-space {
     min-height: 620px;
     padding-top: 120px;
   }

@@ -332,7 +332,7 @@ if (parallaxElements.length > 0) {
 }
 
 // =====================================================
-// 0. LENIS INERTIA MOMENTUM SCROLL (douglus.co Style)
+// Initialize smooth scrolling.
 // =====================================================
 const siteHeader = document.getElementById("siteHeader");
 const scrollProgress = document.getElementById("scrollProgress");
@@ -392,7 +392,7 @@ if (!lenis) {
   }, { passive: true });
 }
 
-// --- Smooth Scroll Anchor Glides (douglus.co Lenis Integration) ---
+// Smooth-scroll anchor links.
 document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
   anchor.addEventListener("click", function (e) {
     const href = this.getAttribute("href");
@@ -585,7 +585,7 @@ if (cursorRocket) {
 }
 
 // =====================================================
-// TACTILE CLICK PHYSICS & SHOCKWAVE MICRO-INTERACTIONS (douglus.co Style)
+// Add click feedback to interactive elements.
 // =====================================================
 document.addEventListener("pointerdown", (e) => {
   const interactive = e.target.closest(
@@ -616,7 +616,7 @@ const releasePressed = () => {
 document.addEventListener("pointerup", releasePressed);
 document.addEventListener("pointercancel", releasePressed);
 
-// --- Enhanced Elastic Magnetic Interaction (douglus.co Style) ---
+// Add pointer-following motion to selected elements.
 const magneticElements = document.querySelectorAll(".magnetic, .nav-cta, .cta, .back-to-top, .mobile-menu-toggle");
 magneticElements.forEach((el) => {
   let bounds = null;
@@ -713,12 +713,12 @@ if (pageSkeleton) {
       ];
       entranceItems.forEach(([element, order]) => {
         if (!element) return;
-        element.classList.add("apple-entrance");
+        element.classList.add("entrance-reveal");
         element.dataset.entranceOrder = order;
       });
       document.body.classList.remove("is-loading");
       document.body.classList.add("hero-revealed");
-      initAppleWordReveal();
+      initWordReveal();
       initCounterAnimation();
       setTimeout(() => pageSkeleton.remove(), 320);
     }, 1550);
@@ -754,12 +754,12 @@ if (pageSkeleton) {
   document.body.classList.remove("is-loading");
   setTimeout(() => {
     document.body.classList.add("hero-revealed");
-    initAppleWordReveal();
+    initWordReveal();
     initCounterAnimation();
   }, 100);
 }
 
-// --- Enhanced 3D Card Hover Perspective Tilt & Dynamic Specular Sheen (douglus.co Style) ---
+// Add perspective tilt and a moving highlight to project cards.
 const tiltCards = document.querySelectorAll(".tilt-card");
 tiltCards.forEach((card) => {
   let rect = null;
@@ -1824,21 +1824,21 @@ if (document.readyState === "loading") {
   document.addEventListener("DOMContentLoaded", () => setTimeout(() => {
     initAsciiReveal();
     initLiquidHover();
-    initAppleScrollEffects();
+    initHeroScrollEffects();
   }, 100));
 } else {
   setTimeout(() => {
     initAsciiReveal();
     initLiquidHover();
-    initAppleScrollEffects();
+    initHeroScrollEffects();
   }, 100);
 }
 
 // =====================================================
-// APPLE-STYLE WORD-BY-WORD HEADLINE REVEAL
+// Reveal headline words in sequence.
 // =====================================================
-function initAppleWordReveal() {
-  const headline = document.querySelector("[data-apple-word-reveal]");
+function initWordReveal() {
+  const headline = document.querySelector("[data-headline-reveal]");
   if (!headline) return;
 
   // Preserve the gradient-text span while splitting
@@ -1854,7 +1854,7 @@ function initAppleWordReveal() {
           fragment.appendChild(document.createTextNode(part));
         } else if (part.length > 0) {
           const span = document.createElement("span");
-          span.className = "apple-word";
+          span.className = "reveal-word";
           span.textContent = part;
           span.style.transitionDelay = `${wordIndex * 0.06}s`;
           fragment.appendChild(span);
@@ -1870,7 +1870,7 @@ function initAppleWordReveal() {
           wrapper.appendChild(document.createTextNode(part));
         } else if (part.length > 0) {
           const span = document.createElement("span");
-          span.className = "apple-word";
+          span.className = "reveal-word";
           span.textContent = part;
           span.style.transitionDelay = `${wordIndex * 0.06}s`;
           wrapper.appendChild(span);
@@ -1887,8 +1887,8 @@ function initAppleWordReveal() {
   // Stagger the word reveals after the headline entrance animation
   const entranceDelay = parseFloat(headline.closest("[data-entrance-order]")?.dataset.entranceOrder || 3) * 200;
   setTimeout(() => {
-    const appleWords = headline.querySelectorAll(".apple-word");
-    appleWords.forEach((word, i) => {
+    const revealWords = headline.querySelectorAll(".reveal-word");
+    revealWords.forEach((word, i) => {
       setTimeout(() => word.classList.add("word-visible"), i * 60);
     });
   }, entranceDelay + 600);
@@ -1930,9 +1930,9 @@ function initCounterAnimation() {
 }
 
 // =====================================================
-// APPLE-STYLE SCROLL EFFECTS
+// Apply scroll-driven hero effects.
 // =====================================================
-function initAppleScrollEffects() {
+function initHeroScrollEffects() {
   const hero = document.querySelector(".hero");
   const heroContent = document.querySelector(".hero-content");
   const heroVisual = document.querySelector(".hero-backdrop") || document.querySelector(".hero-liquid-wrapper");
@@ -1942,7 +1942,7 @@ function initAppleScrollEffects() {
 
   let scrollTicking = false;
 
-  function onAppleScroll() {
+  function onHeroScroll() {
     if (scrollTicking) return;
     scrollTicking = true;
 
@@ -1982,11 +1982,11 @@ function initAppleScrollEffects() {
     });
   }
 
-  window.addEventListener("scroll", onAppleScroll, { passive: true });
+  window.addEventListener("scroll", onHeroScroll, { passive: true });
 }
 
 // =====================================================
-// BYK CONCERT EDITION — STARFIELD CANVAS & 3D ART TILT
+// Render the starfield and manage portrait tilt.
 // =====================================================
 (function initStarfield() {
   const canvas = document.getElementById("starfield");
@@ -2106,9 +2106,9 @@ function initAppleScrollEffects() {
   requestAnimationFrame(renderGaze);
 })();
 
-// --- Floating Spacecraft / Astronauts (BYK Concert Style Random Wander) ---
+// Animate the floating astronaut artwork.
 (function initAstroWander() {
-  const container = document.querySelector(".hero.byk-hero");
+  const container = document.querySelector(".hero.hero-space");
   const els = document.querySelectorAll(".astro-float");
   if (!els.length || !container) return;
   const isMobile = window.matchMedia("(max-width: 980px)").matches;
