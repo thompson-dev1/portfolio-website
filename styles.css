@@ -5141,7 +5141,7 @@ body[data-active-page="contact"] .contact-page-form .contact-actions {
 .theme-toggle:hover { border-color: var(--primary); color: var(--primary); }
 .menu-appearance { padding: 13px 0 15px; border-top: 1px solid var(--line-color); }
 .menu-appearance-label { display: block; margin-bottom: 9px; color: var(--text-muted); font: 500 0.68rem var(--font-mono); letter-spacing: 0.08em; text-transform: uppercase; }
-.theme-options { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
+.theme-options { display: grid; grid-template-columns: repeat(2, 1fr); gap: 6px; }
 .theme-options button {
   padding: 8px 10px;
   border: 1px solid var(--line-color);

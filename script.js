@@ -3,77 +3,92 @@
 // =====================================================
 
 // --- Page routes ---
-// Theme preference: Auto follows local device time (07:00–18:59 light).
-const THEME_STORAGE_KEY = "portfolio-theme-mode";
-const themeModes = ["auto", "light", "dark"];
+// --- Theme System ---
+// Auto runs silently in the background:
+// When the site is opened, it automatically selects Light mode in daytime (07:00–18:59)
+// and Dark mode in the evening/night (19:00–06:59).
+// Clicking the theme toggle or selecting Light/Dark directly switches the theme.
+const THEME_SESSION_KEY = "portfolio-manual-theme";
 const themeMeta = document.querySelector('meta[name="theme-color"]');
 
-function getSavedThemeMode() {
-  try {
-    const saved = localStorage.getItem(THEME_STORAGE_KEY);
-    return themeModes.includes(saved) ? saved : "auto";
-  } catch (error) {
-    return "auto";
-  }
+// Clean up legacy localStorage key if present
+try { localStorage.removeItem("portfolio-theme-mode"); } catch (e) {}
+
+function getAutoTheme() {
+  const hour = new Date().getHours();
+  return (hour >= 7 && hour < 19) ? "light" : "dark";
 }
 
-function applyThemeMode(mode = getSavedThemeMode()) {
-  const themeMode = themeModes.includes(mode) ? mode : "auto";
-  const hour = new Date().getHours();
-  const theme = themeMode === "auto" ? (hour >= 7 && hour < 19 ? "light" : "dark") : themeMode;
-  document.documentElement.dataset.themeMode = themeMode;
-  document.documentElement.dataset.theme = theme;
-  if (themeMeta) themeMeta.setAttribute("content", theme === "light" ? "#f5f2eb" : "#080b09");
+function getActiveTheme() {
+  try {
+    const manual = sessionStorage.getItem(THEME_SESSION_KEY);
+    if (manual === "light" || manual === "dark") return manual;
+  } catch (e) {}
+  return getAutoTheme();
+}
+
+function applyTheme(theme) {
+  const activeTheme = (theme === "light" || theme === "dark") ? theme : getAutoTheme();
+  document.documentElement.dataset.theme = activeTheme;
+  document.documentElement.dataset.themeMode = activeTheme;
+  if (themeMeta) {
+    themeMeta.setAttribute("content", activeTheme === "light" ? "#f5f2eb" : "#080b09");
+  }
 
   document.querySelectorAll("[data-theme-toggle]").forEach((button) => {
-    button.setAttribute("aria-label", `Theme: ${themeMode[0].toUpperCase()}${themeMode.slice(1)} (click to change)`);
-    button.title = `Theme: ${themeMode[0].toUpperCase()}${themeMode.slice(1)}`;
+    const isLight = activeTheme === "light";
+    button.setAttribute("aria-label", isLight ? "Switch to dark theme" : "Switch to light theme");
+    button.title = isLight ? "Theme: Light (click for Dark)" : "Theme: Dark (click for Light)";
     const label = button.querySelector(".theme-toggle-label");
-    if (label) label.textContent = themeMode[0].toUpperCase() + themeMode.slice(1);
+    if (label) label.textContent = isLight ? "Light" : "Dark";
   });
+
   document.querySelectorAll("[data-theme-choice]").forEach((button) => {
-    button.setAttribute("aria-pressed", String(button.dataset.themeChoice === themeMode));
+    button.setAttribute("aria-pressed", String(button.dataset.themeChoice === activeTheme));
   });
 }
 
-function saveThemeMode(mode) {
-  if (!themeModes.includes(mode)) return;
-  try { localStorage.setItem(THEME_STORAGE_KEY, mode); } catch (error) {}
-  applyThemeMode(mode);
+function setTheme(theme) {
+  if (theme !== "light" && theme !== "dark") return;
+  try { sessionStorage.setItem(THEME_SESSION_KEY, theme); } catch (e) {}
+  applyTheme(theme);
 }
 
-applyThemeMode();
+function toggleTheme() {
+  const currentTheme = document.documentElement.dataset.theme === "light" ? "light" : "dark";
+  const nextTheme = currentTheme === "light" ? "dark" : "light";
+  setTheme(nextTheme);
+}
+
+applyTheme(getActiveTheme());
+
 document.querySelectorAll("[data-theme-toggle]").forEach((button) => {
-  button.addEventListener("click", () => {
-    const currentMode = document.documentElement.dataset.themeMode || "auto";
-    const currentIndex = themeModes.indexOf(currentMode);
-    let nextIndex = (currentIndex + 1) % themeModes.length;
-    let nextMode = themeModes[nextIndex];
-    // Skip "auto" if it would resolve to the same visible theme (no change)
-    if (nextMode === "auto") {
-      const hour = new Date().getHours();
-      const autoResolved = hour >= 7 && hour < 19 ? "light" : "dark";
-      if (autoResolved === document.documentElement.dataset.theme) {
-        nextIndex = (nextIndex + 1) % themeModes.length;
-        nextMode = themeModes[nextIndex];
+  button.addEventListener("click", toggleTheme);
+});
+
+document.querySelectorAll("[data-theme-choice]").forEach((button) => {
+  button.addEventListener("click", () => setTheme(button.dataset.themeChoice));
+});
+
+// Auto theme runs in the background:
+// If the user hasn't explicitly chosen a manual theme during this session, keep syncing with time
+function syncAutoThemeInBackground() {
+  try {
+    const manual = sessionStorage.getItem(THEME_SESSION_KEY);
+    if (!manual) {
+      const autoTheme = getAutoTheme();
+      if (document.documentElement.dataset.theme !== autoTheme) {
+        applyTheme(autoTheme);
       }
     }
-    saveThemeMode(nextMode);
-  });
-});
-document.querySelectorAll("[data-theme-choice]").forEach((button) => {
-  button.addEventListener("click", () => saveThemeMode(button.dataset.themeChoice));
-});
-window.addEventListener("storage", (event) => {
-  if (event.key === THEME_STORAGE_KEY || event.key === null) applyThemeMode();
-});
-window.addEventListener("focus", () => applyThemeMode());
+  } catch (e) {}
+}
+
+window.addEventListener("focus", syncAutoThemeInBackground);
 document.addEventListener("visibilitychange", () => {
-  if (!document.hidden) applyThemeMode();
+  if (!document.hidden) syncAutoThemeInBackground();
 });
-window.setInterval(() => {
-  if (document.documentElement.dataset.themeMode === "auto") applyThemeMode("auto");
-}, 60_000);
+window.setInterval(syncAutoThemeInBackground, 60_000);
 
 const pageRoutes = {
   home: { path: "/", title: "Thompson-dev1 | Full-Stack Developer" },

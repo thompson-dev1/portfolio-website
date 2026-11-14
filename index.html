@@ -18,13 +18,21 @@
     <meta name="theme-color" content="#080b09" />
     <script>
       (function () {
-        var mode = "auto";
-        try { mode = localStorage.getItem("portfolio-theme-mode") || "auto"; } catch (error) {}
-        var theme = mode === "light" || mode === "dark"
-          ? mode
-          : (new Date().getHours() >= 7 && new Date().getHours() < 19 ? "light" : "dark");
+        var theme = "dark";
+        try {
+          var manual = sessionStorage.getItem("portfolio-manual-theme");
+          if (manual === "light" || manual === "dark") {
+            theme = manual;
+          } else {
+            var hour = new Date().getHours();
+            theme = (hour >= 7 && hour < 19) ? "light" : "dark";
+          }
+        } catch (error) {
+          var hour = new Date().getHours();
+          theme = (hour >= 7 && hour < 19) ? "light" : "dark";
+        }
         document.documentElement.dataset.theme = theme;
-        document.documentElement.dataset.themeMode = mode;
+        document.documentElement.dataset.themeMode = theme;
       })();
     </script>
     <title>Thompson-dev1 | Full-Stack Developer</title>
@@ -148,7 +156,7 @@
           <span class="cta-pulse"></span>
           Build with me
         </a>
-        <button class="theme-toggle" type="button" data-theme-toggle aria-label="Theme: Auto" title="Theme: Auto"><span aria-hidden="true">◐</span><span class="theme-toggle-label">Auto</span></button>
+        <button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch theme" title="Switch theme"><span aria-hidden="true">◐</span><span class="theme-toggle-label">Theme</span></button>
         <button class="mobile-menu-toggle" id="menuToggle" aria-label="Open menu" aria-controls="mobileMenu" aria-haspopup="true" aria-expanded="false">
           <span class="menu-toggle-lines" aria-hidden="true"><i></i><i></i></span>
           <span class="menu-toggle-label" aria-hidden="true">Menu</span>
@@ -172,7 +180,6 @@
       <div class="menu-appearance" role="group" aria-label="Color theme">
         <span class="menu-appearance-label">Appearance</span>
         <div class="theme-options">
-          <button type="button" data-theme-choice="auto" aria-pressed="true">Auto</button>
           <button type="button" data-theme-choice="light" aria-pressed="false">Light</button>
           <button type="button" data-theme-choice="dark" aria-pressed="false">Dark</button>
         </div>
