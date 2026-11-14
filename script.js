@@ -45,8 +45,20 @@ function saveThemeMode(mode) {
 applyThemeMode();
 document.querySelectorAll("[data-theme-toggle]").forEach((button) => {
   button.addEventListener("click", () => {
-    const currentIndex = themeModes.indexOf(document.documentElement.dataset.themeMode || "auto");
-    saveThemeMode(themeModes[(currentIndex + 1) % themeModes.length]);
+    const currentMode = document.documentElement.dataset.themeMode || "auto";
+    const currentIndex = themeModes.indexOf(currentMode);
+    let nextIndex = (currentIndex + 1) % themeModes.length;
+    let nextMode = themeModes[nextIndex];
+    // Skip "auto" if it would resolve to the same visible theme (no change)
+    if (nextMode === "auto") {
+      const hour = new Date().getHours();
+      const autoResolved = hour >= 7 && hour < 19 ? "light" : "dark";
+      if (autoResolved === document.documentElement.dataset.theme) {
+        nextIndex = (nextIndex + 1) % themeModes.length;
+        nextMode = themeModes[nextIndex];
+      }
+    }
+    saveThemeMode(nextMode);
   });
 });
 document.querySelectorAll("[data-theme-choice]").forEach((button) => {
