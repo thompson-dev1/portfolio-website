@@ -866,7 +866,7 @@ window.addEventListener("beforeunload", updateActiveSection);
 
 // --- Signature Interactive Terminal Console ---
 const commandResponses = {
-  projects: "Voima supports sickle cell care, AADES supports academic review, SME Analytics surfaces small-business social insights, and Model Portfolio brings editorial storytelling to the web.",
+  projects: "Voima supports sickle cell care, Agric DSS connects agricultural trade, CalorieAI streamlines nutrition, Model Portfolio brings editorial storytelling, and SME Analytics surfaces small-business social insights.",
   stack: "Highly proficient in Python, Flask, PHP, SQLite, Next.js, React, Tailwind CSS, GSAP, and advanced UI/UX motion design.",
   process: "Structured methodology: 1. Map real-world workflow limits -> 2. Engineer core database & routes -> 3. Elevate UI clarity -> 4. Ship detailed case studies.",
   contact: "I am actively open to contract product roles, full-stack systems engineering, and custom web applications. Let's make something exceptional."

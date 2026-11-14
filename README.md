@@ -23,14 +23,14 @@ Deploy the project root as a static site. No build command is required. The `_re
 
 ## Featured work
 
-Voima Initiative, CalorieAI, Model Portfolio, AGRIC DSS, and SME Analytics.
+Voima, Agric DSS, CalorieAI, Model Portfolio, and SME Analytics.
 
 ## Live project links
 
-- Voima Initiative: https://www.voimainitiative.com/
+- Voima: https://www.voimainitiative.com/
+- Agric DSS: https://agricdss.netlify.app
 - CalorieAI: https://caloriea-i.netlify.app
 - Model Portfolio: https://priscillaa-portfolio.netlify.app
-- AGRIC DSS: https://agricdss-production.up.railway.app
 - SME Analytics: https://sme-analyts.netlify.app/
 - AADES: https://huggingface.co/spaces/Jahaziel2121/AADES
 - Love Mail: https://voluble-travesseiro-04fbe6.netlify.app
